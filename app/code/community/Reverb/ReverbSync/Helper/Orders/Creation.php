@@ -149,7 +149,7 @@ class Reverb_ReverbSync_Helper_Orders_Creation extends Reverb_ReverbSync_Helper_
         }
         $product_cost = floatval($amount);
         $product->setPrice($product_cost);
-
+		 $product->setSpecialPrice($product_cost);
         return $product;
     }
 
