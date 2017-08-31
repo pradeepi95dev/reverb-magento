@@ -179,7 +179,7 @@ class Reverb_ReverbSync_Helper_Data
     protected function _getListingsApiEndpoint($magento_sku)
     {
         $rev_url = $this->_getReverbAPIBaseUrl();
-        $escaped_sku = urlencode($magento_sku);
+        $escaped_sku = urlencode(trim($magento_sku));
         $params = "state=all&sku=" . $escaped_sku;
         $url = $rev_url . "/api/my/listings?" . $params;
         return $url;
