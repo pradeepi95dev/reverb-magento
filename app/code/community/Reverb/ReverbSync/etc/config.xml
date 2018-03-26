@@ -226,6 +226,15 @@
                 </queue_bulk_product_sync>
             </observers>
         </controller_action_postdispatch_adminhtml_catalog_product_action_attribute_save>
+		 <controller_action_postdispatch_adminhtml_catalog_product_massStatus>
+            <observers>
+                <queue_bulk_product_sync>
+                    <type>singleton</type>
+                    <class>reverbSync/observer</class>
+                    <method>triggerProductSyncOffMassProductUpdate</method>
+                </queue_bulk_product_sync>
+            </observers>
+        </controller_action_postdispatch_adminhtml_catalog_product_massStatus>
     </events>
   </adminhtml>
 
