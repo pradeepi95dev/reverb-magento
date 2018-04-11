@@ -32,6 +32,32 @@ class Reverb_ReverbSync_Model_Observer
         }
     }
 
+	
+	public function kitproductSave($observer)
+    {
+		Mage::Log($observer->getItem()->getProductId(),1,'419reverbproductSave.log');
+        $product = $observer->getItem()->getProductId();
+        $product_id = $product;
+
+        $reverbSyncTaskProcessor = Mage::helper('ReverbSync/task_processor');
+        /* @var $reverbSyncTaskProcessor Reverb_ReverbSync_Helper_Task_Processor */
+
+        try
+        {
+            $reverbSyncTaskProcessor->queueListingsSyncByProductIds(array($product_id));
+        }
+        catch(Exception $e)
+        {
+            $error_message = $reverbSyncTaskProcessor->__(self::EXCEPTION_LISTING_SYNC_ON_PRODUCT_SAVE,
+                                                            $product_id, $e->getMessage());
+
+            $this->_getLogSingleton()->logListingSyncError($error_message);
+            $exceptionToLog = new Exception($error_message);
+            Mage::logException($exceptionToLog);
+        }
+		Mage::Log('reverbproductSave',1,'reverbproductSave.log');
+    }
+	
     // function to get the product quantity placed through order
     public function orderSave($observer)
     {

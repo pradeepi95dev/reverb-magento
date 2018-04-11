@@ -78,6 +78,15 @@
           </Reverb_ReverbSync>
         </observers>
       </catalog_product_save_after>
+	    <cataloginventory_stock_item_save_after>
+        <observers>
+          <Reverb_ReverbSync>
+            <type>singleton</type>
+            <class>Reverb_ReverbSync_Model_Observer</class>
+            <method>kitproductSave</method>
+          </Reverb_ReverbSync>
+        </observers>
+      </cataloginventory_stock_item_save_after>
       <sales_order_place_after>
         <observers>
           <Reverb_ReverbSync>
